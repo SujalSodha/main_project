@@ -28,7 +28,8 @@
 
             <!-- Page Content -->
             <main>
-                {{ $slot }}
+                {{-- {{ $slot }} --}}
+                @yield('profile')
             </main>
         </div>
     </body>

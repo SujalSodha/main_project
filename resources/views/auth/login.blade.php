@@ -1,5 +1,7 @@
-<x-guest-layout>
+@extends('layouts.guest')
     <!-- Session Status -->
+@section('content')
+    
     <x-auth-session-status class="mb-4" :status="session('status')" />
 
     <form method="POST" action="{{ route('login') }}">
@@ -7,19 +9,20 @@
 
         <!-- Email Address -->
         <div>
-            <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus />
+            <lable for="email" value="__('Email')" class="block font-medium text-sm text-gray-700">Email</lable>
+    
+            <input type="text" id="email" class="block mt-1 w-full border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm" type="email" name="email" :value="old('email')" required autofocus >
             <x-input-error :messages="$errors->get('email')" class="mt-2" />
         </div>
 
         <!-- Password -->
         <div class="mt-4">
-            <x-input-label for="password" :value="__('Password')" />
+            <label for="" for="password" :value="__('Password')" class="block font-medium text-sm text-gray-700">Password</label>
 
-            <x-text-input id="password" class="block mt-1 w-full"
+            <input type="password" id="password" class="block mt-1 w-full"
                             type="password"
                             name="password"
-                            required autocomplete="current-password" />
+                            required autocomplete="current-password" >
 
             <x-input-error :messages="$errors->get('password')" class="mt-2" />
         </div>
@@ -39,9 +42,9 @@
                 </a>
             @endif
 
-            <x-primary-button class="ml-3">
+            <button type="submit" class="ml-3 inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 focus:bg-gray-700 active:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150">
                 {{ __('Log in') }}
-            </x-primary-button>
+            </button>
         </div>
     </form>
-</x-guest-layout>
+@endsection
