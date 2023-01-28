@@ -9,47 +9,56 @@
         </p>
     </header>
 
-    <button
-        x-data=""
-        x-on:click.prevent="$dispatch('open-modal', 'confirm-user-deletion')"
-    >{{ __('Delete Account') }}Delete Account</button>
+    <div class="container mt-3">
+        <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#myModal">
+            Delete Account
+        </button>
+      </div>
 
-    <x-modal name="confirm-user-deletion" :show="$errors->userDeletion->isNotEmpty()" focusable>
-        <form method="post" action="{{ route('profile.destroy') }}" class="p-6">
-            @csrf
-            @method('delete')
+      <div class="modal" id="myModal">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
 
-            <h2 class="text-lg font-medium text-gray-900">
-                {{ __('Are you sure you want to delete your account?') }}
-            </h2>
-
-            <p class="mt-1 text-sm text-gray-600">
-                {{ __('Once your account is deleted, all of its resources and data will be permanently deleted. Please enter your password to confirm you would like to permanently delete your account.') }}
-            </p>
-
-            <div class="mt-6">
-                <label for="password" value="Password" class="sr-only block font-medium text-sm text-gray-700" >Password</label>
-
-                <input type="text"
-                    id="password"
-                    name="password"
-                    type="password"
-                    class="mt-1 block w-3/4 border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm"
-                    placeholder="Password"
-                />
-
-                <x-input-error :messages="$errors->userDeletion->get('password')" class="mt-2" />
+            <!-- Modal Header -->
+            <div class="modal-header">
+              <h4 class="modal-title">Delete Account</h4>
+              <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
             </div>
 
-            <div class="mt-6 flex justify-end">
-                <button class="inline-flex items-center px-4 py-2 bg-white border border-gray-300 rounded-md font-semibold text-xs text-gray-700 uppercase tracking-widest shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:opacity-25 transition ease-in-out duration-150" x-on:click="$dispatch('close')">
-                    {{ __('Cancel') }}
-                </button>
+            <!-- Modal body -->
+            <div class="modal-body">
+                <form method="post" action="{{ route('profile.destroy') }}" class="p-6" id="form">
+                    @csrf
+                    @method('delete')
 
-               <button class="ml-3 inline-flex items-center px-4 py-2 bg-red-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-red-500 active:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 transition ease-in-out duration-150">
-                    {{ __('Delete Account') }}
-                </button>
+                    <h2 class="text-lg font-medium text-gray-900">Are you sure your want to delete your account?</h2>
+
+                    <p class="mt-1 text-sm text-gray-600">
+                        {{ __('Once your account is deleted, all of its resources and data will be permanently deleted. Please enter your password to confirm you would like to permanently delete your account.') }}
+                    </p>
+
+                    <div class="mt-6">
+                        <label class="block font-medium text-sm text-gray-700" for="password" value="Password" class="sr-only" >Password</label>
+
+                        <input
+                            id="password"
+                            class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm"
+                            name="password"
+                            type="password"
+                            class="mt-1 block w-3/4 border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm"
+                            placeholder="Password"
+                        />
+                    </div>
+                </form>
             </div>
-        </form>
-    </x-modal>
+
+            <!-- Modal footer -->
+            <div class="modal-footer">
+              <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+              <button type="submit" class="btn btn-primary" data-bs-dismiss="modal" onclick="$('#form').submit();">Delete Account</button>
+            </div>
+
+          </div>
+        </div>
+      </div>
 </section>

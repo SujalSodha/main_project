@@ -17,16 +17,20 @@
         @csrf
         @method('patch')
 
-        <div>
-            <label for="name" :value="__('Name')" class="block font-medium text-sm text-gray-700">Name</label>
-            <input type="text" id="name" name="name" type="text" class="mt-1 block w-full border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm" :value="old('name', $user->name)" required autofocus autocomplete="name" />
-            <x-input-error class="mt-2" :messages="$errors->get('name')" />
+        <div class="form-group row">
+            <label class="col-sm-1 col-form-label" for="name">Name</label>
+            <div class="col-sm-10">
+                <input id="name" name="name" type="text" class="form-control w-25" value={{$user->name}} required autofocus autocomplete="name" />
+            </div>
+            {{-- <x-input-error class="mt-2" :messages="$errors->get('name')" /> --}}
         </div>
 
-        <div>
-            <label  for="email" :value="__('Email')" class="block font-medium text-sm text-gray-700">Email</label>
-            <input type="text" id="email" name="email" type="email" class="mt-1 block w-full border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm" :value="old('email', $user->email)" required autocomplete="email" />
-            <x-input-error class="mt-2" :messages="$errors->get('email')" />
+        <div class="form-group row mt-3">
+            <label for="email" class="col-sm-1 col-form-label">Email</label>
+            <div class="col-sm-10">
+                <input id="email" name="email" type="email" class="form-control w-25" value={{$user->email}} required autocomplete="email" />
+            </div>
+            {{-- <x-input-error class="mt-2" :messages="$errors->get('email')" /> --}}
 
             @if ($user instanceof \Illuminate\Contracts\Auth\MustVerifyEmail && ! $user->hasVerifiedEmail())
                 <div>
@@ -48,7 +52,7 @@
         </div>
 
         <div class="flex items-center gap-4">
-            <button class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 focus:bg-gray-700 active:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150">{{ __('Save') }}</button>
+            <button type="submit" class="inline-flex items-center px-4 py-2 mt-4 mx-5 btn btn-success border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 focus:bg-gray-700 active:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150">{{ __('Save') }}</button>
 
             @if (session('status') === 'profile-updated')
                 <p
