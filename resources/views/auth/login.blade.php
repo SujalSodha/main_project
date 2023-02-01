@@ -9,6 +9,7 @@
 
         <!-- Email Address -->
         <div>
+            <h2>Login</h2>
             <label for="email" value="__('Email')" class="form-label">Email</label>
     
             <input type="text" id="email" class="form-control" type="email" name="email" :value="old('email')" required autofocus >
@@ -41,10 +42,18 @@
                     {{ __('Forgot your password?') }}
                 </a>
             @endif
-
+                <a href="{{route('register')}}">Register now </a>
             <button type="submit" class="btn btn-dark w-100">
                 {{ __('Log in') }}
             </button>
         </div>
+        <div class="d-grid gap-2 my-4">
+            <a class="btn btn-outline-secondary bg-primary text-light w-100" href="{{ route('auth.facebook') }}">
+                Continue with facebook
+            </a>
+            <a class="btn btn-outline-secondary w-100" href="{{ route('auth.google') }}">
+                Continue with google
+            </a>
+            </div>
     </form>
 @endsection

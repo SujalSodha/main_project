@@ -9,9 +9,10 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Fonts -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    {{-- <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> --}}
     <!-- Styles -->
+
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 </head>
 
@@ -23,6 +24,7 @@
         <div class="container">
             @yield('header')
         </div>
+
         <ul class="navbar-nav" style="margin-right:30px;">
             <!-- Settings Dropdown -->
             @auth
@@ -33,13 +35,13 @@
                             {{ Auth::user()->name }}
                         </a>
                         <div class="dropdown-menu dropdown-menu-end animate slideIn" aria-labelledby="navbarDropdown">
+                            
                             <!-- Authentication -->
+
                             <a href="{{ route('profile.edit') }}" class="dropdown-item px-4">
-                                {{-- <i class="fa fa-user" aria-hidden="true"></i> --}}
                                 {{ __('profile') }}
                             </a>
                             <a href="{{ route('change.password') }}" class="dropdown-item px-4">
-                                {{-- <i class="fa fa-refresh" aria-hidden="true"></i> --}}
                                 {{ __('Chage Password') }}
                             </a>
                             <form method="POST" action="{{ route('logout') }}">
@@ -47,7 +49,6 @@
                                 <a href="route('logout')" class="dropdown-item px-4"
                                     onclick="event.preventDefault();
                                                 this.closest('form').submit();">
-                                    {{-- <i class="fa fa-sign-out" aria-hidden="true"></i> --}}
                                     {{ __('Log Out') }}
                                 </a>
                             </form>

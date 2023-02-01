@@ -1,10 +1,12 @@
 @extends('layouts.guest')
     @section('content')
+
     <form method="POST" action="{{ route('register') }}">
         @csrf
 
         <!-- Name -->
         <div>
+            <h2>Registration</h2>
             <label class="form-label" for="name" :value="__('Name')" >Name</label>
             <input type="text" id="name" class="form-control" type="text" name="name" :value="old('name')" required autofocus />
             <x-input-error :messages="$errors->get('name')" class="mt-2" />
