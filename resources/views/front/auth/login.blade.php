@@ -54,6 +54,6 @@
             <a class="btn btn-outline-secondary w-100" href="{{ route('auth.google') }}">
                 Continue with google
             </a>
-            </div>
+          </div>
     </form>
 @endsection

@@ -1,7 +1,7 @@
 @extends('layouts.guest')
     @section('content')
 
-    <form method="POST" action="{{ route('register') }}">
+    <form method="POST" action="{{ route('admin.register') }}">
         @csrf
 
         <!-- Name -->
@@ -23,7 +23,7 @@
         <div class="mt-4">
             <label for="" for="password" :value="__('Password')" class="form-label">Password</label>
 
-            <input type="text" id="password" class="form-control"
+            <input type="password" id="password" class="form-control"
                             type="password"
                             name="password"
                             required autocomplete="new-password" />
@@ -43,7 +43,7 @@
         </div>
 
         <div class="flex items-center justify-end mt-4">
-            <a class="text-muted me-3 text-decoration-none" href="{{ route('login') }}">
+            <a class="text-muted me-3 text-decoration-none" href="{{ url('admin/login') }}">
                 {{ __('Already registered?') }}
             </a>
 

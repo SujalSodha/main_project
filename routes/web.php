@@ -43,3 +43,6 @@ Route::controller(LoginController::class)->group(function(){
     Route::get('auth/google', 'redirectToGoogle')->name('auth.google');
     Route::get('auth/google/callback', 'googleCallback');
 });
+
+require __DIR__.'/admin.php';
+
