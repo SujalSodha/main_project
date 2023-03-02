@@ -17,7 +17,7 @@
         <!-- Password -->
         <div class="mt-4">
             <label  for="password" :value="__('Password')" class="form-label" >Password</label>
-            <input type="text" id="password" class="form-control" type="password" name="password" required />
+            <input type="password" id="password" class="form-control" name="password" required />
             <x-input-error :messages="$errors->get('password')" class="mt-2" />
         </div>
 
@@ -25,8 +25,7 @@
         <div class="mt-4">
             <label  for="password_confirmation" :value="__('Confirm Password')" class="form-label">Confirm Password</label>
 
-            <input type="text" id="password_confirmation" class="form-control"
-                                type="password"
+            <input type="password" id="password_confirmation" class="form-control"
                                 name="password_confirmation" required />
 
             <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />

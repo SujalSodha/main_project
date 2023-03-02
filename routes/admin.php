@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Route;
 // });
 Route::view('admin/dashboard','admin.dashboard');
 // login
+// Route::middleware('guard'=>'admin')->group(function () {
 Route::get('admin/login', [AuthenticatedSessionController::class, 'create']);
 Route::post('admin/login', [AuthenticatedSessionController::class, 'store']);
 
@@ -24,17 +25,18 @@ Route::get('admin/register', [RegisteredUserController::class, 'create'])->name(
 Route::post('admin/register', [RegisteredUserController::class, 'store']);
 
 //forgot-password
-Route::get('admin/forgot-password', [PasswordResetLinkController::class, 'create'])->name('password.request');
+
+Route::get('admin/forgot-password', [PasswordResetLinkController::class, 'create'])->name('admin.password.request');
 Route::post('admin/forgot-password', [PasswordResetLinkController::class, 'store'])->name('admin.password.email');
 
 // reset-password
-Route::get('admin/reset-password/{token}', [NewPasswordController::class, 'create'])->name('password.reset');
-Route::post('admin/reset-password', [NewPasswordController::class, 'store'])->name('admin.password.store');
+Route::get('admin/reset-password', [NewPasswordController::class, 'create'])->name('password.reset');
+Route::post('admin/reset-password.post', [NewPasswordController::class, 'store'])->name('admin.password.store');
 
 
 Route::get('admin/verify-email', [EmailVerificationPromptController::class, '__invoke'])
     ->name('verification.notice');
-
+// });
 Route::get('admin/verify-email/{id}/{hash}', [VerifyEmailController::class, '__invoke'])
     ->middleware(['signed', 'throttle:6,1'])
     ->name('verification.verify');
